@@ -12,4 +12,9 @@ class Product extends Model
         'name',
         'picture',
     ];
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date("d F Y H:i", strtotime($value));
+    }
 }

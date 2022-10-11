@@ -1,3 +1,33 @@
+
+## Description
+
+Product CRUD application built via Laravel 9 + Vue.js
+
+## Steps to run the project
+
+- First create a DB for the project.
+- Copy .env.example file as .env and set up DB parameters in the file
+
+Go to project folder, install dependencies and tables as well as APP_KEY:
+```
+composer install
+npm install
+php artisan migrate
+php artisan key:generate
+```
+
+To start Vite development server:
+```
+npm run dev
+```
+
+In another console tab, start PHP's built-in development server:
+```
+php artisan serve
+```
+
+## Laravel
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

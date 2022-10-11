@@ -11,6 +11,7 @@ const app = createApp(App);
 const routes = [
     { path: '/', component: Index },
     { path: '/form', component: Form },
+    { path: '/form/:id', component: Form },
 ];
 
 const router = VueRouter.createRouter({

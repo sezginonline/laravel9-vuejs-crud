@@ -5,6 +5,8 @@ import * as VueRouter from 'vue-router';
 import Index from './pages/Index.vue';
 import Form from './pages/Form.vue';
 import App from './pages/App.vue';
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const app = createApp(App);
 
@@ -20,5 +22,6 @@ const router = VueRouter.createRouter({
 });
 
 app.use(router);
+app.use(VueSweetalert2);
 
 app.mount('#app');

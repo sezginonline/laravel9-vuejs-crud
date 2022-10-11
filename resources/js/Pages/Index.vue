@@ -12,7 +12,7 @@
         <h1 class="h2">Products</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-            <a href="#form" type="button" class="btn btn-sm btn-outline-secondary">Add New Product</a>
+            <a href="#/form" type="button" class="btn btn-sm btn-primary">Add New Product</a>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
             <span data-feather="calendar" class="align-text-bottom"></span>
@@ -36,9 +36,12 @@
             <tr v-for="product in products" :key="product.id">
               <td>{{ product.id }}</td>
               <td>{{ product.name }}</td>
-              <td>Picture</td>
+              <td>{{ product.picture }}</td>
               <td>{{ product.created_at }}</td>
-              <td>Actions</td>
+              <td>
+                <a href="#/form/1" type="button" class="btn btn-secondary" style="margin-right: 5px">Edit</a>
+                <a v-on:click="deleteProduct(product.id)" type="button" class="btn btn-danger">Delete</a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -70,9 +73,23 @@ export default {
           });
   },
   methods: {
-      deleteProduct(id) { 
-          axios.delete(`http://localhost:8000/api/product/${id}`);
-      }
-  }
+      deleteProduct(id) {
+        this.$swal({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axios.delete('http://localhost:8000/api/product/' + id).then(response => {
+              window.location.reload();
+            });
+          }
+        })
+      },
+  },
 }
 </script>

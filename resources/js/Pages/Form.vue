@@ -1,9 +1,9 @@
 <template>
 
     <Header />
-    
+
     <div class="container-fluid">
-      <div class="row">
+        <div class="row">
         
         <Nav />
     
@@ -21,31 +21,46 @@
             </div>
           </div>
 
-          
+          <div class="mb-3 row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Picture</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="file" id="formFile">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary mb-3">Save</button>
+            </div>
+          </div>
 
         </main>
       </div>
     </div>
-    
-    </template>
-    
-    <script>
-    import Header from '../components/Header.vue';
-    import Nav from '../components/Nav.vue';
-    
-    export default {
-      components: {
-        Header, Nav
-      },
-      data() {
+</template>
 
-      },
-      created() {
+<script>
+import Header from '../components/Header.vue';
+import Nav from '../components/Nav.vue';
 
-      },
-      methods: {
+export default {
+    components: {
+    Header, Nav
+    },
+    data() {
 
-      }
+    },
+    created() {
+
+    },
+    methods: {
+
     }
-    </script>
-    
+}
+</script>

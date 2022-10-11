@@ -67,7 +67,7 @@ export default {
   },
   created() {
     axios
-          .get('http://127.0.0.1:8000/api/product/')
+          .get('/api/product/')
           .then(response => {
               this.products = response.data;
           });
@@ -84,8 +84,8 @@ export default {
           confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            axios.delete('http://localhost:8000/api/product/' + id).then(response => {
-              window.location.reload();
+            axios.delete('/api/product/' + id).then(response => {
+              this.$router.go();
             });
           }
         })

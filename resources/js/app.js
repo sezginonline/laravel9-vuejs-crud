@@ -11,7 +11,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 const app = createApp(App);
 
 const routes = [
-    { path: '/', component: Index },
+    { path: '/', name: 'home', component: Index },
     { path: '/form', component: Form },
     { path: '/form/:id', component: Form },
 ];

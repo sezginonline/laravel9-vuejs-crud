@@ -12,7 +12,7 @@
             <h1 class="h2">Add Product</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group me-2">
-                <a href="/" type="button" class="btn btn-sm btn-outline-secondary">Back to Products</a>
+                <a v-on:click="goToHome" type="button" class="btn btn-sm btn-outline-secondary">Back to Products</a>
               </div>
               <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
                 <span data-feather="calendar" class="align-text-bottom"></span>
@@ -21,24 +21,26 @@
             </div>
           </div>
 
-          <div class="mb-3 row">
-            <label for="name" class="col-sm-2 col-form-label">Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="name" placeholder="Name">
+          <form @submit.prevent="addProduct">
+            <div class="mb-3 row">
+              <label for="name" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" placeholder="Name" v-model="product.name">
+              </div>
             </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Picture</label>
-            <div class="col-sm-10">
-              <input class="form-control" type="file" id="formFile">
+            <div class="mb-3 row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Picture</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="file" id="formFile" v-on:change="">
+              </div>
             </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-              <button type="submit" class="btn btn-primary mb-3">Save</button>
+            <div class="mb-3 row">
+              <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary mb-3">Save</button>
+              </div>
             </div>
-          </div>
+          </form>
 
         </main>
       </div>
@@ -54,13 +56,21 @@ export default {
     Header, Nav
     },
     data() {
-
-    },
-    created() {
-
+      return {
+          product: {}
+      }
     },
     methods: {
-
+      goToHome() {
+        this.$router.push({ name: 'home' });
+      },
+      addProduct() {
+        axios
+          .post('/api/product', this.product)
+          .then(response => (
+              this.$router.push({ name: 'home' })
+          ))
+      }
     }
 }
 </script>

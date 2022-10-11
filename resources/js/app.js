@@ -1,7 +1,23 @@
 import './bootstrap';
 
 import { createApp } from 'vue';
+import * as VueRouter from 'vue-router';
+import Index from './pages/Index.vue';
+import Form from './pages/Form.vue';
+import App from './pages/App.vue';
 
-import app from './Pages/App.vue'
+const app = createApp(App);
 
-createApp(app).mount("#app")
+const routes = [
+    { path: '/', component: Index },
+    { path: '/form', component: Form },
+];
+
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHashHistory(),
+  routes,
+});
+
+app.use(router);
+
+app.mount('#app');

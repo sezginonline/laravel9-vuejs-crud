@@ -20,12 +20,12 @@ php artisan key:generate
 php artisan storage:link
 ```
 
-To start Vite development server:
+Build the frontend:
 ```
-npm run dev
+npm run build
 ```
 
-In another console tab, start PHP's built-in development server:
+Start PHP's built-in development server:
 ```
 php artisan serve
 ```

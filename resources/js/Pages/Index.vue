@@ -39,8 +39,8 @@
               <td>{{ product.picture }}</td>
               <td>{{ product.created_at }}</td>
               <td>
-                <a href="#/form/1" type="button" class="btn btn-secondary" style="margin-right: 5px">Edit</a>
-                <a v-on:click="deleteProduct(product.id)" type="button" class="btn btn-danger">Delete</a>
+                <a @click="editProduct(product.id)" type="button" class="btn btn-secondary" style="margin-right: 5px">Edit</a>
+                <a @click="deleteProduct(product.id)" type="button" class="btn btn-danger">Delete</a>
               </td>
             </tr>
           </tbody>
@@ -73,6 +73,10 @@ export default {
           });
   },
   methods: {
+      editProduct(id) {
+        this.$router.push("/form/" + id);
+      },
+
       deleteProduct(id) {
         this.$swal({
           title: 'Are you sure?',

@@ -3,6 +3,9 @@
 
 Product CRUD application built via Laravel 9 + Vue.js
 
+- [Postman API Documentation](https://documenter.getpostman.com/view/171547/2s83zjtPJF).
+
+
 ## Steps to run the project
 
 - First create a DB for the project.

@@ -37,12 +37,17 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'picture' => 'required|file|image',
         ]);
+
+        $file = $request->file('picture');
+
+        // Save file to disk
+        $file->store('public');
 
         $product = new Product([
             'name' => $request->input('name'),
-            // 'picture' => $request->input('picture'),
+            'picture' => $file->hashName(),
         ]);
 
         $product->save();
@@ -85,7 +90,7 @@ class ProductController extends Controller
 
         $request->validate([
             'name' => 'required',
-            // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'picture' => 'file|image',
         ]);
         
         $product->update($request->all());

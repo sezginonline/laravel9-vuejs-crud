@@ -36,7 +36,7 @@
             <tr v-for="product in products" :key="product.id">
               <td>{{ product.id }}</td>
               <td>{{ product.name }}</td>
-              <td>{{ product.picture }}</td>
+              <td><a v-bind:href="'/storage/' + product.picture" target="_blank"><img width="100" v-bind:src="'/storage/' + product.picture"></a></td>
               <td>{{ product.created_at }}</td>
               <td>
                 <a @click="editProduct(product.id)" type="button" class="btn btn-secondary" style="margin-right: 5px">Edit</a>

@@ -11,12 +11,13 @@ Product CRUD application built via Laravel 9 + Vue.js
 - First create a DB for the project.
 - Copy .env.example file as .env and set up DB parameters in the file
 
-Go to project folder, install dependencies and tables as well as APP_KEY:
+Go to project folder, install dependencies and tables as well as APP_KEY and storage link:
 ```
 composer install
 npm install
 php artisan migrate
 php artisan key:generate
+php artisan storage:link
 ```
 
 To start Vite development server:
@@ -31,6 +32,17 @@ php artisan serve
 
 ## Screenshots
 
+<p align="center">
+<a href="https://github.com/sezginonline/laravel9-vuejs-crud/blob/master/public/img/ss1.png"><img src="https://github.com/sezginonline/laravel9-vuejs-crud/blob/master/public/img/ss1.png" alt="Index"></a>
+<a href="https://github.com/sezginonline/laravel9-vuejs-crud/blob/master/public/img/ss2.png"><img src="https://github.com/sezginonline/laravel9-vuejs-crud/blob/master/public/img/ss2.png" alt="Form"></a>
+</p>
+
+## Troubleshooting
+
+If you cannot upload the file to the server don't forget to give correct permission to storage folder.
+```
+sudo chown -R www-data:www-data /path/to/your/project/storage
+```
 
 ## Laravel
 

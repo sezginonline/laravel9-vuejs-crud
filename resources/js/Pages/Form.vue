@@ -32,7 +32,7 @@
             <div class="mb-3 row">
               <label for="inputPassword" class="col-sm-2 col-form-label">Picture</label>
               <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile" v-on:change="">
+                <input class="form-control" type="file" id="file" @change="selectFile">
               </div>
             </div>
             <div class="mb-3 row">
@@ -71,16 +71,36 @@ export default {
       }
     },
     methods: {
+
+      selectFile(event) {
+        this.product.picture = event.target.files[0];
+      },
+
       goToHome() {
         this.$router.push({ name: 'home' });
       },
+
       saveProduct() {
-        
+
+        const data = new FormData();
+        if (this.product.name) {
+          data.append('name', this.product.name);
+        }
+        if (this.product.picture) {
+          data.append('picture', this.product.picture);
+        }
+
         if (this.$route.params.id) { 
+
+          this.product._method = "PUT";
 
           // Edit Product
           axios
-          .put('/api/product/' + this.$route.params.id, this.product)
+          .post('/api/product/' + this.$route.params.id, data, {
+            headers: {
+              'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substring(2)
+            }
+          })
           .then(response => (
               this.$router.push({ name: 'home' })
           ))
@@ -91,11 +111,15 @@ export default {
             });
           })
 
-        } else { 
+        } else {
 
           // Add Product
           axios
-          .post('/api/product', this.product)
+          .post('/api/product', data, {
+            headers: {
+              'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substring(2)
+            }
+          })
           .then(response => (
               this.$router.push({ name: 'home' })
           ))
@@ -108,6 +132,7 @@ export default {
           
         }
       },
+      
     }
 }
 </script>

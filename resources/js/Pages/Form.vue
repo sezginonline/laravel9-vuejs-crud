@@ -30,8 +30,11 @@
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Picture</label>
-              <div class="col-sm-10">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Picture
+                <img id="preview" width="100">
+              </label>
+              
+              <div class="col-sm-10">                
                 <input class="form-control" type="file" id="file" @change="selectFile">
               </div>
             </div>
@@ -67,6 +70,7 @@ export default {
             .get('/api/product/' + this.$route.params.id)
             .then((response) => {
                 this.product = response.data;
+                preview.src = '/storage/' + this.product.picture;
             });
       }
     },
@@ -74,6 +78,7 @@ export default {
 
       selectFile(event) {
         this.product.picture = event.target.files[0];
+        preview.src = URL.createObjectURL(this.product.picture);
       },
 
       goToHome() {
@@ -92,7 +97,7 @@ export default {
 
         if (this.$route.params.id) { 
 
-          this.product._method = "PUT";
+          data.append('_method', "PUT");
 
           // Edit Product
           axios

@@ -91,10 +91,29 @@ class ProductController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'picture' => 'file|image',
         ]);
-        
-        $product->update($request->all());
+
+        if ($request->file('picture')) {
+
+            $request->validate([
+                'picture' => 'required|file|image',
+            ]);
+            
+            // Remove old picture from storage
+            Storage::disk('public')->delete($product->picture);
+
+            $file = $request->file('picture');
+
+            // Save file to disk
+            $file->store('public');
+
+            $product->picture = $file->hashName();
+
+        }
+
+        $product->name = $request->input('name');
+
+        $product->save();
 
         return $product;
     }

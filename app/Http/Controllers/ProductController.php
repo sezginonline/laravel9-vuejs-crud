@@ -83,6 +83,11 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
+        $request->validate([
+            'name' => 'required',
+            // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        
         $product->update($request->all());
 
         return $product;

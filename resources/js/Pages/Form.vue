@@ -84,6 +84,12 @@ export default {
           .then(response => (
               this.$router.push({ name: 'home' })
           ))
+          .catch(error => {
+            this.$swal({
+              title: "Error !",
+              text: error.response.data.message,
+            });
+          })
 
         } else { 
 
@@ -93,7 +99,13 @@ export default {
           .then(response => (
               this.$router.push({ name: 'home' })
           ))
-
+          .catch(error => {
+            this.$swal({
+              title: "Error !",
+              text: error.response.data.message,
+            });
+          })
+          
         }
       },
     }

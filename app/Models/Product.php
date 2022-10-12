@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'picture',
@@ -15,6 +16,6 @@ class Product extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        return date("d F Y H:i", strtotime($value));
+        return date('d F Y H:i', strtotime($value));
     }
 }

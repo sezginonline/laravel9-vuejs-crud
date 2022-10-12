@@ -94,11 +94,10 @@ class ProductController extends Controller
         ]);
 
         if ($request->file('picture')) {
-
             $request->validate([
                 'picture' => 'required|file|image',
             ]);
-            
+
             // Remove old picture from storage
             Storage::disk('public')->delete($product->picture);
 
@@ -108,7 +107,6 @@ class ProductController extends Controller
             $file->store('public');
 
             $product->picture = $file->hashName();
-
         }
 
         $product->name = $request->input('name');
